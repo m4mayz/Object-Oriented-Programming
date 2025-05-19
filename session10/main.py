@@ -12,14 +12,12 @@ class BankAccount:
         BankAccount.total_accounts += 1
     
     def deposit(self, amount):
-        """Instance method to deposit money into the account."""
         if amount > 0:
             self.balance += amount
             return f"Deposited ${amount}. New balance: ${self.balance}"
         return "Invalid deposit amount."
     
     def withdraw(self, amount):
-        """Instance method to withdraw money from the account."""
         if 0 < amount <= self.balance:
             self.balance -= amount
             return f"Withdrew ${amount}. New balance: ${self.balance}"
@@ -27,20 +25,12 @@ class BankAccount:
     
     @classmethod
     def create_joint_account(cls, account_holder1, account_holder2, initial_deposit=0):
-        """
-        Class method that creates a joint bank account with two account holders.
-        Returns a new BankAccount instance.
-        """
         joint_name = f"{account_holder1} & {account_holder2}"
         print(f"Creating joint account for {joint_name}")
         return cls(joint_name, initial_deposit)
     
     @classmethod
     def update_interest_rate(cls, new_rate):
-        """
-        Class method to update the interest rate for all accounts.
-        This affects a class variable that applies to all instances.
-        """
         if 0 <= new_rate <= 0.1:  # Ensure rate is reasonable (0-10%)
             cls.interest_rate = new_rate
             return f"Interest rate updated to {new_rate:.1%}"
@@ -48,10 +38,6 @@ class BankAccount:
     
     @staticmethod
     def validate_account_number(account_number):
-        """
-        Static method to validate the format of an account number.
-        This doesn't need access to any instance or class data.
-        """
         if not isinstance(account_number, str):
             return False
         
@@ -65,10 +51,6 @@ class BankAccount:
     
     @staticmethod
     def calculate_loan_payment(principal, annual_rate, years):
-        """
-        Static method to calculate monthly payment for a loan.
-        This is a utility function that doesn't depend on any account details.
-        """
         # Convert annual rate to monthly rate and years to months
         monthly_rate = annual_rate / 12
         months = years * 12
